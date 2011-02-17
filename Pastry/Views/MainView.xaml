@@ -105,19 +105,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Complete">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding completeCommand}">
-                                        <Button.Template>
-                                            <ControlTemplate>
-                                                <Image Source="/Pastry;component/complete.jpg" Width="20" Height="20"/>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

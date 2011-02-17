@@ -43,7 +43,7 @@
     <Style TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="#0C1A66" />
         <Setter Property="Foreground" Value="WhiteSmoke" />
-        <Setter Property="BorderBrush" Value="#162366" />
+        <Setter Property="BorderThickness" Value="0" />
     </Style>
     
     <Style TargetType="{x:Type ListViewItem}">

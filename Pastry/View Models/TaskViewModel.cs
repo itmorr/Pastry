@@ -103,15 +103,15 @@ namespace Pastry.ViewModels
                     ProgressPercent = Math.Floor((((double)value/(double)MaxProgress)*100)) + "%";
                     if (value < (0.15) * maxProgress)
                     {
-                        ProgressPercentForeground = "#79681A";
+                        ProgressPercentForeground = "Red";
                     }
                     else if (value < (0.60) * maxProgress)
                     {
-                        ProgressPercentForeground = "SmokeWhite";
+                        ProgressPercentForeground = "WhiteSmoke";
                     }
                     else
                     {
-                        ProgressPercentForeground = "#79681A";
+                        ProgressPercentForeground = "Green";
                     }
                     OnPropertyChanged(new PropertyChangedEventArgs("Progress"));
                 }
@@ -293,16 +293,20 @@ namespace Pastry.ViewModels
 
         public void computeProgress()
         {
-            double totalTodoHours = 0;
+            double expectedHours = 0;
             // Recompute progress.
             if (billableTasks != null)
             {
                 foreach (ListViewItemViewModel billableItem in billableTasks)
                 {
-                    totalTodoHours += billableItem.task.hours;
+                    expectedHours += billableItem.task.hours;
+                }
+                foreach (ListViewItemViewModel actualBillableItem in actualBillableTasksToday)
+                {
+                    expectedHours += actualBillableItem.task.hours;
                 }
             }
-            Progress = totalTodoHours;
+            Progress = expectedHours;
         }
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
