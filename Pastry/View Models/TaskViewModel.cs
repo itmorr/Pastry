@@ -308,7 +308,6 @@ namespace Pastry.ViewModels
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             saveData();
-            //PropertyChanged.Raise(this, e);
             PropertyChanged.Invoke(this, e);
         }
 

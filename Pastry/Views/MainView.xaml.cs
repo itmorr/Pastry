@@ -32,7 +32,7 @@ namespace Pastry
         {
             InitializeComponent();
 
-            System.Windows.Clipboard.SetDataObject(DumpControlTemplate(this.btnAdd), true);
+            //System.Windows.Clipboard.SetDataObject(DumpControlTemplate(buttonBase), true);
 
             NotifyIcon ni = new NotifyIcon();
 
