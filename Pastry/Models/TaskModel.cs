@@ -15,11 +15,9 @@ namespace Pastry.Models
     {
         public string description { get; set; }
         public double hours { get; set; }
-        public DeleteCommand deleteCommand { get; set; }
 
         public Task()
         {
-            deleteCommand = new DeleteCommand();
         }
 
         public Task(string description, double hours)
@@ -46,26 +44,6 @@ namespace Pastry.Models
         {
             info.AddValue("description", description);
             info.AddValue("hours", hours);
-        }
-
-        #endregion
-    }
-
-    public class DeleteCommand : ICommand
-    {
-
-        #region ICommand Members
-
-        public bool CanExecute(object parameter)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public event System.EventHandler CanExecuteChanged;
-
-        public void Execute(object parameter)
-        {
-            MessageBox.Show("running command!");
         }
 
         #endregion

@@ -33,7 +33,7 @@
     </Style>
     
     <Style TargetType="{x:Type Label}" x:Key="PercentLabel">
-        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontSize" Value="24" />
     </Style>
     
     <Style TargetType="{x:Type Label}">
@@ -45,10 +45,44 @@
         <Setter Property="Foreground" Value="WhiteSmoke" />
         <Setter Property="BorderBrush" Value="#162366" />
     </Style>
+    
+    <Style TargetType="{x:Type ListViewItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2,2,2,2"
+                                Margin="0,0,0,0"/>
+                        <GridViewRowPresenter TextBlock.Foreground="{TemplateBinding Foreground}"
+                                TextBlock.FontSize="11"
+                                Content="{TemplateBinding Content}"
+                                Columns="{TemplateBinding GridView.ColumnCollection}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#272000" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="Background" Value="#000936"/>
+        <Setter Property="Background" Value="#06001B"/>
         <Setter Property="Foreground" Value="WhiteSmoke" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridViewColumnHeader">
+                    <Border Background="{TemplateBinding Background}" Padding="5" Margin="1" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     
     <Style TargetType="{x:Type RadioButton}">
@@ -57,9 +91,23 @@
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="BorderBrush" Value="#162366" />
+        <Setter Property="BorderBrush" Value="#272000" />
         <Setter Property="Foreground" Value="WhiteSmoke" />
         <Setter Property="Background" Value="#0C1A66" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="2" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#79681A" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     
     <Style TargetType="{x:Type Border}" x:Key="TextBoxBorder">
@@ -73,6 +121,44 @@
         <Setter Property="Foreground" Value="WhiteSmoke" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="#000C1A66" />
+    </Style>
+    
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="#06001B" />
+        <Setter Property="Foreground" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="#0C1A66" />
+        <Setter Property="Foreground" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="#272000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5,10,0,0">
+                        <ContentPresenter ContentSource="Header" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#79681A" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderBrush" Value="#79681A" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

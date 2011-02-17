@@ -7,10 +7,49 @@
         <Grid Width="650" Height="358">
             <ProgressBar Height="22" HorizontalAlignment="Left" Margin="174,12,0,0" Name="pbUtilization" VerticalAlignment="Top" Width="385" Value="{Binding Progress}" Maximum="{Binding MaxProgress}"/>
             <Label Style="{StaticResource ResourceKey='PercentLabel'}" Height="36" HorizontalAlignment="Left" Margin="566,4,0,0" Name="lblUtilization" VerticalAlignment="Top" Width="72" Foreground="{Binding ProgressPercentForeground}" Content="{Binding ProgressPercent}"/>
-            <Label Content="Billable:" Height="28" HorizontalAlignment="Left" Margin="12,49,0,0" Name="lblBillable" VerticalAlignment="Top" />
-            <Label Content="NonBillable:" Height="28" HorizontalAlignment="Left" Margin="225,49,0,0" Name="lblNonBillable" VerticalAlignment="Top" />
-            <Label Content="Actual Billable Today:" Height="28" HorizontalAlignment="Left" Margin="438,49,0,0" Name="lblActualBillableToday" VerticalAlignment="Top" />
-            <ListView Height="225" HorizontalAlignment="Left" Margin="12,74,0,0" Name="lvBillable" VerticalAlignment="Top" Width="207" ItemsSource="{Binding}">
+
+            <TabControl Height="225" Width="621" Margin="12,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TabItem Header="Billable">
+                    <Border CornerRadius="5">
+                        <ListView Name="lvBillable" ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding task.description}"/>
+                            <GridViewColumn Header="Hours" DisplayMemberBinding="{Binding task.hours}"/>
+                            <GridViewColumn Header="Delete">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding deleteCommand}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <Image Source="/Pastry;component/delete.jpg" Width="20" Height="20"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Complete">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding completeCommand}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <Image Source="/Pastry;component/complete.jpg" Width="20" Height="20"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                    </Border>
+                </TabItem>
+                <TabItem Header="NonBillable">
+                    <Border CornerRadius="5">
+                <ListView Name="lvNonBillable" ItemsSource="{Binding}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Description" DisplayMemberBinding="{Binding task.description}"/>
@@ -44,7 +83,11 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Height="225" HorizontalAlignment="Left" Margin="225,74,0,0" Name="lvNonBillable" VerticalAlignment="Top" Width="207" ItemsSource="{Binding}">
+            </Border>
+                </TabItem>
+                <TabItem Header="Actual Billable Today">
+                    <Border CornerRadius="5">
+                <ListView Name="lvActualBillableToday" ItemsSource="{Binding}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Description" DisplayMemberBinding="{Binding task.description}"/>
@@ -78,50 +121,19 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Height="225" HorizontalAlignment="Left" Margin="438,74,0,0" Name="lvActualBillableToday" VerticalAlignment="Top" Width="207" ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding task.description}"/>
-                        <GridViewColumn Header="Hours" DisplayMemberBinding="{Binding task.hours}"/>
-                        <GridViewColumn Header="Delete">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding deleteCommand}">
-                                        <Button.Template>
-                                            <ControlTemplate>
-                                                <Image Source="/Pastry;component/delete.jpg" Width="20" Height="20"/>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Complete">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding completeCommand}">
-                                        <Button.Template>
-                                            <ControlTemplate>
-                                                <Image Source="/Pastry;component/complete.jpg" Width="20" Height="20"/>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            </Border>
+                </TabItem>
+            </TabControl>
             <Label Content="Add Task:" Height="28" HorizontalAlignment="Left" Margin="12,312,0,0" Name="lblAddTask" VerticalAlignment="Top" Width="59" />
             <RadioButton BorderBrush="#162366" Background="#0C1A66" TabIndex="0" Content="Billable" Height="16" HorizontalAlignment="Left" Margin="77,312,0,0" Name="rbBillable" VerticalAlignment="Top" GroupName="billable" />
             <RadioButton BorderBrush="#162366" Background="#0C1A66" TabIndex="1" Content="NonBillable" Height="16" HorizontalAlignment="Left" Margin="77,330,0,0" Name="rbNonbillable" VerticalAlignment="Top" GroupName="billable"/>
-            <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="151,317,0,0" Name="label2" VerticalAlignment="Top" />
+            <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="161,317,0,0" Name="label2" VerticalAlignment="Top" />
             <Label Content="Hours:" Height="28" HorizontalAlignment="Left" Margin="461,315,0,0" Name="label3" VerticalAlignment="Top" />
             <Button Content="Add!" Height="34" HorizontalAlignment="Left" Margin="570,312,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
             <Border Height="23" HorizontalAlignment="Left" Margin="509,317,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource ResourceKey='TextBoxBorder'}">
                 <TextBox TabIndex="3"  Name="txtHours" Width="49" Height="23"/>
             </Border>
-            <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,317,0,0" Width="230" Height="23" Style="{StaticResource ResourceKey='TextBoxBorder'}">
+            <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="235,317,0,0" Width="220" Height="23" Style="{StaticResource ResourceKey='TextBoxBorder'}">
                 <TextBox TabIndex="2" Name="txtDescription" />
             </Border>
             <Label Content="Daily Expected Utilization:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblDailyExpectedUtilization" VerticalAlignment="Top" FontWeight="Bold"/>
